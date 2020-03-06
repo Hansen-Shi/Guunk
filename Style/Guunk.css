@@ -1,0 +1,12 @@
+/*#titleScreen{
+    background: url('../images/slime.gif');
+    width: 500px;
+    height: 500px;
+    position: absolute;
+}*/
+
+.slime{
+    width: 256px;
+    height: 192px;
+    position: absolute;    
+}
