@@ -6,7 +6,8 @@
 }*/
 
 .slime{
-    width: 256px;
-    height: 192px;
-    position: absolute;    
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transform: none;    
 }

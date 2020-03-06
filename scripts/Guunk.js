@@ -14,17 +14,14 @@ const action = {
     SPACE: 32,
 };
 
-const player = document.getElementById("slime");
-reset();
-
 let keys = {};
 document.addEventListener("keydown", function (event) {
     if (
         event.keyCode == action.RIGHT ||
         event.keyCode == action.LEFT ||
         event.keyCode == action.SPACE ||
-        event.keyCode == action.UP 
-        ) {
+        event.keyCode == action.UP
+    ) {
         keys[event.keyCode] = true;
     }
 });
@@ -34,20 +31,24 @@ document.addEventListener("keyup", function (event) {
         event.keyCode == action.RIGHT ||
         event.keyCode == action.LEFT ||
         event.keyCode == action.SPACE ||
-        event.keyCode == action.UP 
-        ) {
+        event.keyCode == action.UP
+    ) {
         keys[event.keyCode] = false;
     }
 });
 
+function reset(document) {
+    document.style.left = screen_w * .5 + "px";
+    document.style.top = screen_h * .5 + "px";
+    document.style.width = 100 + "px";
+    document.style.height = 100 + "px";
+}
+
 $(document).ready(function () {
+    const player = document.getElementById("slime");
+    reset(player);
 });
 
-function reset(){
-    player.style.left = screen_w *.5 + "px";
-    player.style.top = screen_h *.5 + "px";
-    player.style.width = 100 + "px";
-    player.style.height = 100 + "px";
-}
+
 
 
