@@ -6,12 +6,7 @@ var Guunk = function() {
         width: screen_w,
         height: screen_h,
         gravity: 1,
-
     }
-    let locX = 0;
-    let locY = 0;
-    let velocX = 0;
-    let velocY = 0;
 
     this.player = new Player();
 
@@ -22,16 +17,16 @@ var Guunk = function() {
         SPACE: 32,
     };
 
-    let keys = {};
+    /*let keys = {};
     document.addEventListener("keydown", function (event) {
-        /*if (
+        if (
             event.keyCode == action.RIGHT ||
             event.keyCode == action.LEFT ||
             event.keyCode == action.SPACE ||
             event.keyCode == action.UP
         ) {
             keys[event.keyCode] = true;
-        }*/
+        }
         if (event.keyCode == action.RIGHT) {
             locX += 1;
             player.x += 1;
@@ -54,7 +49,16 @@ var Guunk = function() {
         ) {
             keys[event.keyCode] = false;
         }
-    });
+    });*/
+}
+
+
+var Player = function(){
+    var self = this;
+    let locX = 0;
+    let locY = 0;
+    let velocX = 0;
+    let velocY = 0;
 
     function reset(document) {
         document.style.left = screen_w * .5 + "px";
@@ -67,9 +71,46 @@ var Guunk = function() {
         const player = document.getElementById("slime");
         reset(player);
     });
-}
 
+    const action = {
+        LEFT: 37,
+        RIGHT: 39,
+        UP: 38,
+        SPACE: 32,
+    };
 
-var Player = function(){
+    let keys = {};
+    document.addEventListener("keydown", function (event) {
+        /*if (
+            event.keyCode == action.RIGHT ||
+            event.keyCode == action.LEFT ||
+            event.keyCode == action.SPACE ||
+            event.keyCode == action.UP
+        ) {
+            keys[event.keyCode] = true;
+        }*/
+        if (event.keyCode == action.RIGHT) {
+            locX += 4;
+            $('#slime').css('left', locX);
+        }
+        if (event.keyCode == action.LEFT) {
+            locX -= 4;
+            $('#slime').css('left', locX);
+        }
+        if (event.keyCode == action.UP) {
+            locY += 1;
+        }
+        console.log(locX, locY);
+    });
 
+    document.addEventListener("keyup", function (event) {
+        if (
+            event.keyCode == action.RIGHT ||
+            event.keyCode == action.LEFT ||
+            event.keyCode == action.SPACE ||
+            event.keyCode == action.UP
+        ) {
+            keys[event.keyCode] = false;
+        }
+    });
 }
