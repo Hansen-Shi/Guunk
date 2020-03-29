@@ -1,45 +1,39 @@
 var Player = function(){
     var self = this;
-    let locX = 0;
-    let locY = 0;
-    let velocX = 0;
-    let velocY = 0;
-    const action = {
-        LEFT: 37,
-        RIGHT: 39,
-        UP: 38,
-        SPACE: 32,
-    };
+    this.locX = 0;
+    this.locY = 0;
+    this.velocX = 0;
+    this.velocY = 0;
 
     this.initilize=function(){
-        self.locX = 100;
-        self.locY = 100;
-        self.velocX = 0;
-        self.velocY = 0;
+        this.locX = 100;
+        this.locY = 500;
+        this.velocX = 0;
+        this.velocY = 0;
     }
 
     this.update = function(keys){
         //console.log("update called");
-        if(keys.action.LEFT){
-            if(self.velocX > -5){
-                self.self.velocX -= 1.5;
+        if(keys.left){
+            if(this.velocX > -5){
+                this.velocX -= 2;
             }
-            if(self.velocX < 0){
-                self.velocX += 1;
+            if(this.velocX < 0){
+                this.velocX += 1;
             }
-            self.locX+=self.velocX;
+            this.locX+=this.velocX;
         }
 
-        if(keys.RIGHT){
-            if(self.velocX < 5){
-                self.velocX + 1.5;
+        if(keys.right){
+            if(this.velocX < 5){
+                this.velocX += 2;
             }
-            if(self.velocX > 0){
-                self.velocX -= 1;
+            if(this.velocX > 0){
+                this.velocX -= 1;
             }
-            self.locX+=self.velocX;
+            this.locX+=this.velocX;
         }
-        //console.log(self.locX, self.locY);
+        console.log(this.locX, this.locY);
     };
 
     
