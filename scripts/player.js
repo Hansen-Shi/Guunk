@@ -5,6 +5,7 @@ var Player = function(){
     this.velocX = 0;
     this.velocY = 0;
     this.jumpCnt = 0;
+    this.canJump = true;
 
     this.initilize=function(){
         this.locX = 100;
@@ -37,12 +38,16 @@ var Player = function(){
         }
         
         if(keys.up){
-            if(this.velocY == 0 && this.jumpCnt < 2){
+            if(this.canJump == true && this.jumpCnt < 2){
                 this.velocY += -14;
                 this.jumpCnt += 1;
+                this.canJump = false;
                 this.locY += this.velocY;
             }
-            
+        }
+        if(keys.up == false){
+            this.canJump = true;
+            //this.velocY = this.velocY + 1;
         }
         
         if(this.locY >= 525){
@@ -55,7 +60,7 @@ var Player = function(){
         
         this.locY += this.velocY;
         
-        console.log(this.locX, this.locY);
+        console.log(this.canJump);
     };
 
     
