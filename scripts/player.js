@@ -13,8 +13,8 @@ var Player = function(){
     }
 
     this.update = function(keys){
-        //console.log("update called");
         if(keys.left){
+            $('#slime').css('-transform', 'scaleX(1)');
             if(this.velocX > -5){
                 this.velocX -= 2;
             }
@@ -25,6 +25,7 @@ var Player = function(){
         }
 
         if(keys.right){
+            $('#slime').css('-transform', 'scaleX(-1)');
             if(this.velocX < 5){
                 this.velocX += 2;
             }

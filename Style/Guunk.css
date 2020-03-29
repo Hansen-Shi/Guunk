@@ -9,5 +9,5 @@
     width: 100px;
     height: 100px;
     position: absolute;
-    transform: none;    
+    transform: scaleX(-1);    
 }
