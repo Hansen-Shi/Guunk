@@ -44,6 +44,7 @@ var Player = function(){
         }
         
         if(this.locY >= 500){
+            this.locY = 500;
             this.velocY = 0;
         } else{
             this.velocY = this.velocY+1;
