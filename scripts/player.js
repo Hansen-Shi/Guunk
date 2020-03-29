@@ -36,12 +36,23 @@ var Player = function(){
             }*/
             this.locX+=this.velocX;
         }
-
-        if (keys.up){
-            this.gravSpd += this.grav;
-            this.velocY = -14;
-            this.locY += this.velocY + this.gravSpd;
+        
+        if(keys.up){
+            if(this.velocY == 0){
+                this.velocY += -10;
+                this.locY += this.velocY;
+            }
+            
         }
+        
+        if(this.locY >= 500){
+            this.locY = 500;
+            this.velocY = 0;
+        } else{
+            this.velocY = this.velocY+1;
+        }
+        
+        this.locY += this.velocY;
         console.log(this.locX, this.locY);
     };
 
