@@ -39,7 +39,7 @@ var Player = function(){
         
         if(keys.up){
             if(this.canJump == true && this.jumpCnt < 2){
-                this.velocY += -14;
+                this.velocY = -14;
                 this.jumpCnt += 1;
                 this.canJump = false;
                 this.locY += this.velocY;
@@ -54,7 +54,7 @@ var Player = function(){
             this.velocY = 0;
             this.jumpCnt = 0;
         } else{
-            this.velocY = this.velocY + .7;
+            this.velocY = this.velocY + .8;
         }
         
         this.locY += this.velocY;
