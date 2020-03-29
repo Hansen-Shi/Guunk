@@ -79,6 +79,7 @@ function Guunk() {
 
 function mainLoop(){
     $('#slime').css('left', gg.player.locX);
+    $('#slime').css('top',gg.player.locY);
     //console.log(1);
     gg.player.update(gg.keys);
     //  console.log("tick");
