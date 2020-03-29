@@ -1,15 +1,14 @@
-var Guunk = function() {
+function Guunk() {
     var self=this;
     screen_w = screen.width;
     screen_h = screen.height;
+    let keys = {};
     this.options={
         width: screen_w,
         height: screen_h,
         gravity: 1,
     }
-
     this.player = new Player();
-
     const action = {
         LEFT: 37,
         RIGHT: 39,
@@ -17,90 +16,34 @@ var Guunk = function() {
         SPACE: 32,
     };
 
-    /*let keys = {};
-    document.addEventListener("keydown", function (event) {
-        if (
-            event.keyCode == action.RIGHT ||
-            event.keyCode == action.LEFT ||
-            event.keyCode == action.SPACE ||
-            event.keyCode == action.UP
-        ) {
-            keys[event.keyCode] = true;
-        }
-        if (event.keyCode == action.RIGHT) {
-            locX += 1;
-            player.x += 1;
-        }
-        if (event.keyCode == action.LEFT) {
-            locX -= 1;
-        }
-        if (event.keyCode == action.UP) {
-            locY += 1;
-        }
-        console.log(locX, locY);
-    });
+    this.initilize=function(){
+        //this.reset(document);
+        console.log("initilize called");
+        requestAnimationFrame(mainLoop);
+    };
 
-    document.addEventListener("keyup", function (event) {
-        if (
-            event.keyCode == action.RIGHT ||
-            event.keyCode == action.LEFT ||
-            event.keyCode == action.SPACE ||
-            event.keyCode == action.UP
-        ) {
-            keys[event.keyCode] = false;
-        }
+    /*$(document).ready(function () {
+        const player = document.getElementById("slime");
+        reset(player);
     });*/
-}
 
-
-var Player = function(){
-    var self = this;
-    let locX = 0;
-    let locY = 0;
-    let velocX = 0;
-    let velocY = 0;
-
-    function reset(document) {
+    /*function reset(document) {
         document.style.left = screen_w * .5 + "px";
         document.style.top = screen_h * .5 + "px";
         document.style.width = 100 + "px";
         document.style.height = 100 + "px";
-    }
+    };*/
+    
 
-    $(document).ready(function () {
-        const player = document.getElementById("slime");
-        reset(player);
-    });
-
-    const action = {
-        LEFT: 37,
-        RIGHT: 39,
-        UP: 38,
-        SPACE: 32,
-    };
-
-    let keys = {};
     document.addEventListener("keydown", function (event) {
-        /*if (
+        if (
             event.keyCode == action.RIGHT ||
             event.keyCode == action.LEFT ||
             event.keyCode == action.SPACE ||
             event.keyCode == action.UP
         ) {
             keys[event.keyCode] = true;
-        }*/
-        if (event.keyCode == action.RIGHT) {
-            locX += 4;
-            $('#slime').css('left', locX);
         }
-        if (event.keyCode == action.LEFT) {
-            locX -= 4;
-            $('#slime').css('left', locX);
-        }
-        if (event.keyCode == action.UP) {
-            locY += 1;
-        }
-        console.log(locX, locY);
     });
 
     document.addEventListener("keyup", function (event) {
@@ -113,4 +56,17 @@ var Player = function(){
             keys[event.keyCode] = false;
         }
     });
+
+
+    this.initilize();
+    console.log("initilized properly");
+}
+
+function mainLoop(){
+    $('#slime').css('left', player.locX);
+    //console.log(1);
+    gg.player.update(gg.keys);
+    console.log("tick");
+    //$('#slime').css('left', player.locX);
+    requestAnimationFrame(mainLoop);
 }
