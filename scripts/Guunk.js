@@ -50,9 +50,11 @@ function Guunk() {
     document.addEventListener("keydown", function (event) {
         if (event.keyCode == action.RIGHT) {
             gg.keys.right = true;
+            gg.keys.left = false;
         }
         if(event.keyCode == action.LEFT){
             gg.keys.left = true;
+            gg.keys.right = false;
         }
         if(event.keyCode == action.SPACE){
             gg.keys.space = true;
