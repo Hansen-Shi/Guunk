@@ -1,13 +1,18 @@
-/*#titleScreen{
-    background: url('../images/slime.gif');
-    width: 500px;
-    height: 500px;
-    position: absolute;
-}*/
 
 #slime{
     width: 100px;
     height: 100px;
     position: absolute;
-    transform: scaleX(-1);    
+    transform: scaleX(-1);
+    z-index: 1;   
+}
+
+#floor{
+    position: absolute;
+    background-color: #D0D0D0;
+    top: 575px;
+    left: 0px;
+    width: 500px;
+    height: 50px;
+    z-index: 0;
 }

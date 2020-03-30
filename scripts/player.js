@@ -20,9 +20,6 @@ var Player = function(){
             if(this.velocX > -5){
                 this.velocX -= 2;
             }
-            /*if(this.velocX < 0){
-                this.velocX += 1;
-            }*/
             this.locX+=this.velocX;
         }
 
@@ -31,9 +28,6 @@ var Player = function(){
             if(this.velocX < 5){
                 this.velocX += 2;
             }
-            /*if(this.velocX > 0){
-                this.velocX -= 1;
-            }*/
             this.locX+=this.velocX;
         }
         
