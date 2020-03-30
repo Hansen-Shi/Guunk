@@ -79,7 +79,7 @@ function Guunk() {
 
 
     this.initilize();
-    console.log("initilized properly");
+    console.log("initialized properly");
 }
 
 function check_collision_side(player, $div2){
