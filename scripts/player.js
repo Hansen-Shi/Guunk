@@ -49,15 +49,33 @@ var Player = function(){
         if (keys.left){
             $('#slime').css('-transform', 'scaleX(1)');
             if(this.velocX > -5){
-                this.velocX -= 2;
+                this.velocX -= .5;
             }
-            this.locX+=this.velocX;
-        }else if (keys.right){
+            
+        }
+         if (keys.right){
             $('#slime').css('-transform', 'scaleX(-1)');
             if(this.velocX < 5){
-                this.velocX += 2;
+                this.velocX += .5;
             }
-            this.locX+=this.velocX;
+            
+        }
+        this.locX+=this.velocX;
+        if(this.velocX > 0){
+            if(this.velocX - .2 < 0){
+                this.velocX = 0;
+            }
+            else{
+            this.velocX -=.2;
+            }
+        }
+        if(this.velocX < 0){
+            if(this.velocX + .2 > 0){
+                this.velocX = 0;
+            }
+            else{
+            this.velocX +=.2;
+            }
         }
         
         if(keys.up){
