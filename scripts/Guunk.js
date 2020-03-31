@@ -103,7 +103,7 @@ function Guunk() {
             }
             // $('#slime').css('left', gg.player.locX);
             // $('#slime').css('top', gg.player.locY);
-        }else if(gg.player.locY > 1536 || shiftState == -1){
+        }else if(gg.player.locX > 1536 || shiftState == -1){
             shiftState=-1;
 
             var allObjectsToShift = $('.object');
@@ -112,10 +112,14 @@ function Guunk() {
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
                 if(gg.player.velocX > 0){
-                    allObjectsToShift[i].style.left = offsets.left - leftRightCamSpeed + "px";
+                    allObjectsToShift[i].style.left = offsets.left - gg.player.velocX + "px";
                 }else{
                     allObjectsToShift[i].style.left = offsets.left - leftRightCamSpeed + "px";
                 }
+            }
+
+            if(gg.player.locX < 1344){
+                shiftState = 0;
             }
 
 
