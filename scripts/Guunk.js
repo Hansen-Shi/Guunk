@@ -43,10 +43,13 @@ function Guunk() {
 
     this.screenShiftUpDown = function(){
 
+
         //the player is above a certain point on the screen, so we must shift everything down some amount.
         //for now we are going with 20% of the screen (1080*.2 = 216)
 
-        if(gg.player.locY < 216){
+
+        //screen height * 25%
+        if(gg.player.locY < window.innerHeight*1.0/4){
             var allObjectsToShift = $('.object');
 
             gg.player.locY += postShiftAmt;
@@ -57,9 +60,8 @@ function Guunk() {
             }
 
 
-            // $('#slime').css('left', gg.player.locX);
-            // $('#slime').css('top', gg.player.locY);
-        }else if(gg.player.locY > 864){
+        //screen height - (screen height * 25%)
+        }else if(gg.player.locY > window.innerHeight - (window.innerHeight*1.0/4)){
 
             var allObjectsToShift = $('.object');
             gg.player.locY -= postShiftAmt;
@@ -67,7 +69,7 @@ function Guunk() {
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
                 if(gg.player.velocY > 0){
-                    allObjectsToShift[i].style.top = offsets.top - gg.player.velocY - postShiftAmt + "px";
+                    allObjectsToShift[i].style.top = offsets.top - postShiftAmt + "px";
                 }else{
                     allObjectsToShift[i].style.top = offsets.top - postShiftAmt + "px";
                 }
@@ -84,7 +86,8 @@ function Guunk() {
     //we will
     this.screenShiftLeftRight = function(){
 
-        if(gg.player.locX < 576){
+        //screen width * 33%
+        if(gg.player.locX < window.innerWidth*1.0/3){
             shiftState=1;
             var allObjectsToShift = $('.object');
 
@@ -94,19 +97,16 @@ function Guunk() {
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
                 if(gg.player.velocX < 0){
-                    allObjectsToShift[i].style.left = offsets.left - gg.player.velocX + leftRightCamSpeed + "px";
+                    allObjectsToShift[i].style.left = offsets.left + leftRightCamSpeed + "px";
                 }else {
                     allObjectsToShift[i].style.left = offsets.left + leftRightCamSpeed + "px";
                 }
             }
 
-            if(gg.player.locX > 576){
-                shiftState = 0;
-            }
-            // $('#slime').css('left', gg.player.locX);
-            // $('#slime').css('top', gg.player.locY);
-        }else if(gg.player.locX > 1344){
-            shiftState=-1;
+
+            //screen width - screen width * 33%
+        }else if(gg.player.locX > (window.innerWidth - (window.innerWidth*1.0/3))){
+
 
             var allObjectsToShift = $('.object');
 
@@ -116,19 +116,11 @@ function Guunk() {
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
                 if(gg.player.velocX > 0){
-                    allObjectsToShift[i].style.left = offsets.left - gg.player.velocX - leftRightCamSpeed + "px";
+                    allObjectsToShift[i].style.left = offsets.left - leftRightCamSpeed + "px";
                 }else{
                     allObjectsToShift[i].style.left = offsets.left - leftRightCamSpeed + "px";
                 }
             }
-
-            if(gg.player.locX < 1344){
-                shiftState = 0;
-            }
-
-
-            // $('#slime').css('left', gg.player.locX);
-            // $('#slime').css('top', gg.player.locY);
 
         }
 
@@ -206,6 +198,7 @@ function Guunk() {
 }
 
 function mainLoop(){
+    console.log("This is the screen width", screen_w);
     $('#slime').css('left', gg.player.locX);
     $('#slime').css('top', gg.player.locY);
     //console.log(1);
