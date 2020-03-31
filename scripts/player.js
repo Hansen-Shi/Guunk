@@ -1,6 +1,6 @@
 var Player = function(){
     var self = this;
-    this.paddingLeftRight = 8;
+    this.paddingLeftRight = 5;
     this.locX = 100;
     this.locY = 525;
     this.velocX = 0;
@@ -49,35 +49,10 @@ var Player = function(){
             if ( (this.locY + this.height > blockY+3) //bottom of player is below top of block
                 && (this.locY < blockY + blockHeight)) { //top of player is above bottom of block
 
-                if (this.locX > blockX + blockWidth) {
-                    //we are to the right of this block
-
-                    //check if we will collide next frame
-                    if (this.locX + this.velocX < blockX + blockWidth) {
-                        //console.log("CUTTTHROAT");
-                        //console.log(this.velocX);
-                        return (blockX+blockWidth);
-                    }
-
-
-                } else if (this.locX + this.width < blockX){
-                    //we are to the left of this block
-
-                    // console.log("VVVVVVVVVVVVVVVV");
-                    // console.log(document.getElementById("slime").offsetHeight);
-                    //check if we will collide next frame
-                    if (this.locX + this.width + this.velocX > blockX) {
-                        //console.log("IF YOU SEE THIS YOU FUCKED");
-                        return (blockX - this.width);
-
-
-                        /*this.velocX=0;
-
-                        //move the player so that his right is touching the blocks left
-                        this.locX = blockX - 50;*/
-                    }
-
+                if( (this.locX + this.width) > blockX  &&  (this.locX) < (blockX + blockWidth)){
+                    return 10;
                 }
+
 
             }
         }
@@ -118,7 +93,7 @@ var Player = function(){
             if((this.locX + this.width - this.paddingLeftRight) > blockX  &&  (this.locX+this.paddingLeftRight) < (blockX + blockWidth)){
                 //checking if our Y posn + our Y vel + our height is > blockY
                 //console.log("inside left and right");
-                if((this.locY+this.velocY + this.height) >= blockY && this.locY < blockY){
+                if((this.locY+this.velocY + this.height) >= blockY && (this.locY) < blockY){
                     return(blockY);
                 }
             }
@@ -145,7 +120,7 @@ var Player = function(){
          //TODO: check sideways shit
          const XCoordOfBlockThatWeAreCollidingWith = this.collidingFromSide();
          if(XCoordOfBlockThatWeAreCollidingWith !== -1){
-             this.locX=XCoordOfBlockThatWeAreCollidingWith;
+            // this.locX=XCoordOfBlockThatWeAreCollidingWith;
              this.velocX=0;
          }else {
              this.locX += this.velocX;
@@ -211,6 +186,7 @@ var Player = function(){
             this.velocY = 0;
             this.locY = x - this.height; //to be fucking honest I'm clearly not paying enough attention because I have no fucking idea why 72 is the magic number.. it should be 50..?? or 100? the height? or the height/2?
             this.jumpCnt = 0;
+            this.hoverCounter = 0;
         }
 
 
