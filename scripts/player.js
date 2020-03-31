@@ -142,7 +142,7 @@ var Player = function(){
             }
         }
         
-        if(keys.up && this.jumpAllow){
+        if((keys.up || keys.space) && this.jumpAllow){
             if(this.canJump == true && this.jumpCnt < 2){
                 if(this.jumpCnt == 1 && !this.doubleJumpAllow){}
                 else{
@@ -153,7 +153,7 @@ var Player = function(){
                 }
             }
         }
-        if(keys.up == false){
+        if((keys.up || keys.space) == false){
             this.canJump = true;
         }
 
@@ -172,7 +172,7 @@ var Player = function(){
                 this.velocY = 0;
                 this.jumpCnt = 0;
             } else{
-                if(keys.space && this.hoverAllow && this.velocY > 0 && this.hoverCounter < 50){
+                if(keys.shift && this.hoverAllow && this.velocY > 0 && this.hoverCounter < 50){
                     this.velocY = 1;
                     this.hoverCounter += 1;
                 }
