@@ -9,6 +9,7 @@ var Player = function(){
     this.canJump = true;
     this.width = 50;
     this.height = 50;
+    this.hoverCounter = 0;
     //this is my current hacky way to introduce this block jumping collision detection
     //im assuming in the future we can concurrently send this array and only send the ones that are on the screen to the player
     //something along those lines. This will have many blocks coordinates in it
@@ -23,6 +24,7 @@ var Player = function(){
     this.jumpAllow = true;
     this.doubleJumpAllow = true;
     this.spitAllow = true;
+    this.hoverAllow = true;
 
 
     this.collidingFromSide = function(){
@@ -184,12 +186,22 @@ var Player = function(){
         if(x === -1){
             this.locY += this.velocY;
 
+            if(this.velocY == 0){
+                this.hoverCounter = 0;
+            }
+
             if(this.locY >= 525){
                 this.locY = 525;
                 this.velocY = 0;
                 this.jumpCnt = 0;
             } else{
-                this.velocY = this.velocY + .8;
+                if(keys.space && this.hoverAllow && this.velocY > 0 && this.hoverCounter < 50){
+                    this.velocY = 1;
+                    this.hoverCounter += 1;
+                }
+                else{
+                    this.velocY = this.velocY + .8;
+                }
             }
 
         }else{
