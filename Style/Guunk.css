@@ -24,3 +24,13 @@
     width: 0px;
     height: 0px;
 }
+
+#platform{
+    position: absolute;
+    background-color: #D0D0D0;
+    top: 50px;
+    left: 400px;
+    width: 120px;
+    height: 60px;
+    z-index: 0;
+}

@@ -1,8 +1,8 @@
 var Player = function(){
     var self = this;
     this.paddingLeftRight = 10;
-    this.locX = 0;
-    this.locY = 0;
+    this.locX = 100;
+    this.locY = 525;
     this.velocX = 0;
     this.velocY = 0;
     this.jumpCnt = 0;
@@ -14,15 +14,15 @@ var Player = function(){
     //something along those lines. This will have many blocks coordinates in it
 
     //array of everything that can create collision with the player
-    let blockLocations = [[225,400,60]]; // { {X, Y, Width}, {X, Y, Width}, ...}
+    let blockLocations = [[225,400,60], [400, 50, 60],[460, 50, 60]]; // { {X, Y, Width}, {X, Y, Width}, ...}
     //testing something again
 
-    this.initialize=function(){
-        this.locX = 100;
-        this.locY = 525;
-        this.velocX = 0;
-        this.velocY = 0;
-    }
+    //these are the permissions you have to unlock
+    this.leftAllow = true;
+    this.rightAllow = true;
+    this.jumpAllow = true;
+    this.doubleJumpAllow = true;
+    this.spitAllow = true;
 
 
     this.collidingFromSide = function(){
@@ -51,8 +51,8 @@ var Player = function(){
 
                     //check if we will collide next frame
                     if (this.locX + this.velocX < blockX + blockWidth) {
-                        console.log("CUTTTHROAT");
-                        console.log(this.velocX);
+                        //console.log("CUTTTHROAT");
+                        //console.log(this.velocX);
                         return (blockX+blockWidth);
                     }
 
@@ -64,7 +64,7 @@ var Player = function(){
                     // console.log(document.getElementById("slime").offsetHeight);
                     //check if we will collide next frame
                     if (this.locX + this.width + this.velocX > blockX) {
-                        console.log("IF YOU SEE THIS YOU FUCKED");
+                        //console.log("IF YOU SEE THIS YOU FUCKED");
                         return (blockX - this.width);
 
 
@@ -111,7 +111,7 @@ var Player = function(){
             //we will check if our right is to the right of the left part of the block, and if our left is to the left of the right part of the block
             if((this.locX + this.width - this.paddingLeftRight) > blockX  &&  (this.locX+this.paddingLeftRight) < (blockX + blockWidth)){
                 //checking if our Y posn + our Y vel + our height is > blockY
-                console.log("inside left and right");
+                //console.log("inside left and right");
                 if((this.locY+this.velocY + this.height) >= blockY && this.locY < blockY){
                     return(blockY);
                 }
@@ -122,16 +122,16 @@ var Player = function(){
     }
 
     this.update = function(keys){
-        if (keys.left){
+        if (keys.left && this.leftAllow){
             $('#slime').css('-transform', 'scaleX(1)');
-            if(this.velocX > -5){
+            if(this.velocX > -6){
                 this.velocX -= .5;
             }
             
         }
-         if (keys.right){
+         if (keys.right && this.rightAllow){
             $('#slime').css('-transform', 'scaleX(-1)');
-            if(this.velocX < 5){
+            if(this.velocX < 6){
                 this.velocX += .5;
             }
             
@@ -161,12 +161,15 @@ var Player = function(){
             }
         }
         
-        if(keys.up){
+        if(keys.up && this.jumpAllow){
             if(this.canJump == true && this.jumpCnt < 2){
-                this.velocY = -20;
-                this.jumpCnt += 1;
-                this.canJump = false;
-                this.locY += this.velocY;
+                if(this.jumpCnt == 1 && !this.doubleJumpAllow){}
+                else{
+                    this.velocY = -17;
+                    this.jumpCnt += 1;
+                    this.canJump = false;
+                    this.locY += this.velocY;
+                }
             }
         }
         if(keys.up == false){
@@ -197,10 +200,9 @@ var Player = function(){
         }
 
 
-        console.log(this.canJump);
-    };
+        //console.log(this.canJump);
+    }; //end update
     
-    this.initialize()
     console.log("proper player");
 
 }
