@@ -48,6 +48,8 @@ function Guunk() {
 
         if(gg.player.locY < 216){
             var allObjectsToShift = $('.object');
+
+            gg.player.locY += postShiftAmt;
             for(let i = 0; i < allObjectsToShift.length;i++){
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
@@ -58,15 +60,14 @@ function Guunk() {
             // $('#slime').css('left', gg.player.locX);
             // $('#slime').css('top', gg.player.locY);
         }else if(gg.player.locY > 864){
-            console.log("uh oh");
 
             var allObjectsToShift = $('.object');
-
+            gg.player.locY -= postShiftAmt;
             for(let i = 0; i < allObjectsToShift.length;i++){
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
                 if(gg.player.velocY > 0){
-                    allObjectsToShift[i].style.top = offsets.top - gg.player.velocY + "px";
+                    allObjectsToShift[i].style.top = offsets.top - gg.player.velocY - postShiftAmt + "px";
                 }else{
                     allObjectsToShift[i].style.top = offsets.top - postShiftAmt + "px";
                 }
