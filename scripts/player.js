@@ -1,7 +1,18 @@
+/*
+    Here is my thesis on how we are going to move upwards.
+    Anytime you the character have a y position < 200, we need will increase both your position, and everything in the games position by some amount, 5
+    each gametick, until our y position is back to normal. We will also store the sum of this shift somewhere, and unshift everything(including yourself) when youn fall.
+
+    If I do this right, it should look exactly like a camera is following our character up.
+
+    We can use the same principle for left and right.
+
+ */
+
 var Player = function(){
     var self = this;
-    this.paddingLeftRight = 5;
-    this.locX = 100;
+    this.paddingLeftRight = 10;
+    this.locX = 800;
     this.locY = 525;
     this.velocX = 0;
     this.velocY = 0;
@@ -10,13 +21,7 @@ var Player = function(){
     this.width = 50;
     this.height = 50;
     this.hoverCounter = 0;
-    //this is my current hacky way to introduce this block jumping collision detection
-    //im assuming in the future we can concurrently send this array and only send the ones that are on the screen to the player
-    //something along those lines. This will have many blocks coordinates in it
 
-    //array of everything that can create collision with the player
-    let blockLocations = [[225,400,60,60], [350,450,180,60], [0, 575, 240, 60] ] // { {X, Y, Width, Height}, {X, Y, Width, Height}, ...}
-    //testing something again
 
     //these are the permissions you have to unlock
     this.leftAllow = true;
@@ -28,13 +33,15 @@ var Player = function(){
 
 
     this.collidingFromSide = function(){
-        for(let i = 0; i < blockLocations.length; i++) {
+        var bricksArray = $('.brick');
+        for(let i = 0; i < bricksArray.length; i++) {
             //when colliding with something left/right we first check if the players position is > or < the blocks position
 
-            const blockX = blockLocations[i][0];
-            const blockY = blockLocations[i][1];
-            const blockWidth = blockLocations[i][2];
-            const blockHeight = blockLocations[i][3];
+            var offsets = bricksArray[i].getBoundingClientRect();
+            const blockX = offsets.left;
+            const blockY = offsets.top;
+            const blockWidth = bricksArray[i].offsetWidth;
+            const blockHeight = bricksArray[i].offsetHeight;
 
             // console.log(blockX);
             // console.log(blockWidth);
@@ -62,14 +69,15 @@ var Player = function(){
     this.collidingWithBlockFromTop = function(){
         // console.log("colliding with block from top is called");
         //we are colliding from the top if our halfway point is inside the bounds of x and x+ width, and our locY + our VelY + our height > block Y
-        for(let i = 0; i < blockLocations.length; i++){
+        var bricksArray = $('.brick');
+        for(let i = 0; i < bricksArray.length; i++){
             //if we are currently on the way up, keep going.
-            if(i === 1)
-                console.log("I == 1: ", blockLocations[i][0]);
-            const blockX = blockLocations[i][0];
-            const blockY = blockLocations[i][1];
-            const blockWidth = blockLocations[i][2];
-            const blockHeight = blockLocations[i][3];
+
+            var offsets = bricksArray[i].getBoundingClientRect();
+            const blockX = offsets.left;
+            const blockY = offsets.top;
+            const blockWidth = bricksArray[i].offsetWidth;
+            const blockHeight = bricksArray[i].offsetHeight;
 
             if(this.velocY < 0){
                 //this if says we are in the left/right of the block so we can BONK
@@ -159,7 +167,8 @@ var Player = function(){
 
         //here is where we check for collision with blocks that we can land on.
         const x = this.collidingWithBlockFromTop();
-        //we are not colliding with a block we can stand on, so we now move on to ground checking.
+        //we are not colliding with a block we can stand on, so we now move on to ground and gravity checking.
+        //if the character moves past the halfway point of the screen, the screen
         if(x === -1){
             this.locY += this.velocY;
 
@@ -167,7 +176,7 @@ var Player = function(){
                 this.hoverCounter = 0;
             }
 
-            if(this.locY >= 525){
+            if(this.locY >= 525 && false){
                 this.locY = 525;
                 this.velocY = 0;
                 this.jumpCnt = 0;
