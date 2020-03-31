@@ -15,7 +15,7 @@ var Player = function(){
     //something along those lines. This will have many blocks coordinates in it
 
     //array of everything that can create collision with the player
-    let blockLocations = [[225,400,60,60],[350,450,180,60] ] // { {X, Y, Width, Height}, {X, Y, Width, Height}, ...}
+    let blockLocations = [[225,400,60,60], [350,450,180,60], [0, 575, 240, 60] ] // { {X, Y, Width, Height}, {X, Y, Width, Height}, ...}
     //testing something again
 
     //these are the permissions you have to unlock
