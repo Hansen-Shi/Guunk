@@ -1,5 +1,6 @@
 var Player = function(){
     var self = this;
+    this.paddingLeftRight = 10;
     this.locX = 0;
     this.locY = 0;
     this.velocX = 0;
@@ -92,7 +93,7 @@ var Player = function(){
                 //TODO: check for upwards bonk
 
                 //this if says we are in the left/right of the block so we can BONK
-                if( (this.locX + this.width) > blockX  &&  this.locX < (blockX + blockWidth)){
+                if( (this.locX + this.width - this.paddingLeftRight) > blockX  &&  (this.locX+this.paddingLeftRight) < (blockX + blockWidth)){
                     //to know if we are going to bonk with a block we need to check if the top of our character is above the bottom of the block,and the bottom is below the top of the block,
                     if((this.locY + this.velocY) < (blockY+blockWidth) && (this.locY + this.height) > blockY){
                         this.velocY = 1.5;
@@ -107,8 +108,8 @@ var Player = function(){
             // const halfway = this.locX + this.width/2;
             //checking if our halfway point is inside the bounds of x and x+width
 
-            //instead we will check if our right is to the right of the left part of the block, and if our left is to the left of the right part of the block
-            if( (this.locX + this.width) > blockX  &&  this.locX < (blockX + blockWidth)){
+            //we will check if our right is to the right of the left part of the block, and if our left is to the left of the right part of the block
+            if((this.locX + this.width - this.paddingLeftRight) > blockX  &&  (this.locX+this.paddingLeftRight) < (blockX + blockWidth)){
                 //checking if our Y posn + our Y vel + our height is > blockY
                 console.log("inside left and right");
                 if((this.locY+this.velocY + this.height) >= blockY && this.locY < blockY){
@@ -199,7 +200,7 @@ var Player = function(){
         console.log(this.canJump);
     };
     
-    this.initilize()
+    this.initialize()
     console.log("proper player");
 
 }
