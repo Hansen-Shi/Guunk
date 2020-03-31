@@ -15,7 +15,7 @@ var Player = function(){
     //something along those lines. This will have many blocks coordinates in it
 
     //array of everything that can create collision with the player
-    let blockLocations = [[225,400,60], [400, 50, 60],[460, 50, 60]]; // { {X, Y, Width}, {X, Y, Width}, ...}
+    let blockLocations = [[225,400,60,60],[320,450,180,60] ] // { {X, Y, Width, Height}, {X, Y, Width, Height}, ...}
     //testing something again
 
     //these are the permissions you have to unlock
@@ -30,24 +30,25 @@ var Player = function(){
     this.collidingFromSide = function(){
         for(let i = 0; i < blockLocations.length; i++) {
             //when colliding with something left/right we first check if the players position is > or < the blocks position
+
             const blockX = blockLocations[i][0];
             const blockY = blockLocations[i][1];
             const blockWidth = blockLocations[i][2];
+            const blockHeight = blockLocations[i][3];
+
             // console.log(blockX);
             // console.log(blockWidth);
-            //
+
             // console.log(this.locX);
             // console.log(this.velocX);
+
 
 
             //we first check if the bottom of the player is below the top of the block, and above the bottom of block
             //and then we check if the top of the player is above the bottom of the block, and below the top of the block
             if ( (this.locY + this.height > blockY+3) //bottom of player is below top of block
-                && (this.locY < blockY + blockWidth)) { //top of player is above bottom of block
+                && (this.locY < blockY + blockHeight)) { //top of player is above bottom of block
 
-                //AY IF YOU START USING THINGS THAT AREN'T SQUARES, DON'T FORGET TO PUT THE HEIGHT HERE AND NOT THE WIDTH, IDIOT TODO
-
-                // console.log("inside up down");
                 if (this.locX > blockX + blockWidth) {
                     //we are to the right of this block
 
@@ -88,22 +89,25 @@ var Player = function(){
         //we are colliding from the top if our halfway point is inside the bounds of x and x+ width, and our locY + our VelY + our height > block Y
         for(let i = 0; i < blockLocations.length; i++){
             //if we are currently on the way up, keep going.
+            if(i === 1)
+                console.log("I == 1: ", blockLocations[i][0]);
             const blockX = blockLocations[i][0];
             const blockY = blockLocations[i][1];
             const blockWidth = blockLocations[i][2];
-            if(this.velocY < 0){
-                //TODO: check for upwards bonk
+            const blockHeight = blockLocations[i][3];
 
+            if(this.velocY < 0){
                 //this if says we are in the left/right of the block so we can BONK
                 if( (this.locX + this.width - this.paddingLeftRight) > blockX  &&  (this.locX+this.paddingLeftRight) < (blockX + blockWidth)){
                     //to know if we are going to bonk with a block we need to check if the top of our character is above the bottom of the block,and the bottom is below the top of the block,
-                    if((this.locY + this.velocY) < (blockY+blockWidth) && (this.locY + this.height) > blockY){
+                    if((this.locY + this.velocY) < (blockY+blockHeight) && (this.locY + this.height) > blockY){
                         this.velocY = 1.5;
-                        this.locY = blockWidth + blockY;
+                        this.locY = blockHeight + blockY;
                     }
                 }
 
-                return -1;
+                // HAHAHAHAH WE'RE USING CONTINUE
+                continue;
             }
             // console.log("for loop iteration")
 
@@ -179,8 +183,6 @@ var Player = function(){
         }
 
         //here is where we check for collision with blocks that we can land on.
-        //I recommend only doing collisions on the top of walkable environments.
-        //(if you are standing directly below, you can jump up, and get stopped on the way down, but not on the way up.)
         const x = this.collidingWithBlockFromTop();
         //we are not colliding with a block we can stand on, so we now move on to ground checking.
         if(x === -1){
