@@ -14,8 +14,9 @@ var Player = function(){
 
     //array of everything that can create collision with the player
     let blockLocations = [[225,400,60]]; // { {X, Y, Width}, {X, Y, Width}, ...}
+    //testing something
 
-    this.initilize=function(){
+    this.initialize=function(){
         this.locX = 100;
         this.locY = 525;
         this.velocX = 0;
