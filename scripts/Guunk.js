@@ -1,8 +1,9 @@
 function Guunk() {
 
 
-    const postShiftAmt = 7;
+    let postShiftAmt = 7;
     const leftRightCamSpeed = 5;
+    const shiftAccel = .8;
 
     //so for the left/right shifting the way it will work is we will have a threshold that once we pass, we will shift everything until we are centered as much as we want.
     var shiftState = 0;//0 means we are not shifting, 1 means we are shifting to the right, and -1 means we are shifting to the left.
@@ -50,6 +51,7 @@ function Guunk() {
 
         //screen height * 25%
         if(gg.player.locY < window.innerHeight*1.0/4){
+            postShiftAmt=7;
             var allObjectsToShift = $('.object');
 
             gg.player.locY += postShiftAmt;
@@ -61,8 +63,9 @@ function Guunk() {
 
 
         //screen height - (screen height * 25%)
-        }else if(gg.player.locY > window.innerHeight - (window.innerHeight*1.0/4)){
-
+        }else if(gg.player.locY > window.innerHeight - (window.innerHeight*1.0/2.5)){
+            postShiftAmt = gg.player.velocY;
+            postShiftAmt += shiftAccel;
             var allObjectsToShift = $('.object');
             gg.player.locY -= postShiftAmt;
             for(let i = 0; i < allObjectsToShift.length;i++){
@@ -74,11 +77,8 @@ function Guunk() {
                     allObjectsToShift[i].style.top = offsets.top - postShiftAmt + "px";
                 }
             }
-
-
-            // $('#slime').css('left', gg.player.locX);
-            // $('#slime').css('top', gg.player.locY);
-
+        }else{
+            postShiftAmt=7;
         }
 
     };
