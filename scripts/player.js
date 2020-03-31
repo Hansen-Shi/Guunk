@@ -211,6 +211,7 @@ var Player = function(){
             this.velocY = 0;
             this.locY = x - this.height; //to be fucking honest I'm clearly not paying enough attention because I have no fucking idea why 72 is the magic number.. it should be 50..?? or 100? the height? or the height/2?
             this.jumpCnt = 0;
+            this.hoverCounter = 0;
         }
 
 
