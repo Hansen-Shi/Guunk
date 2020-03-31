@@ -1,4 +1,13 @@
-
+body{
+    overflow:hidden;
+    margin:0;
+}
+#background-jank{
+    position: absolute;
+    background-image: url('https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/369060/e956b1c351981ac95c5ae2c0a22a48d9b352fcce.jpg');
+    background-repeat: repeat;
+    z-index: -1;
+}
 #slime{
     width: 50px;
     margin: 0px;
@@ -22,3 +31,4 @@
     height: 50px;
     z-index: 0;
 }
+
