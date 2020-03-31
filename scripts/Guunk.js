@@ -2,7 +2,7 @@ function Guunk() {
 
 
     const postShiftAmt = 7;
-    const leftRightCamSpeed = 2;
+    const leftRightCamSpeed = 5;
 
     //so for the left/right shifting the way it will work is we will have a threshold that once we pass, we will shift everything until we are centered as much as we want.
     var shiftState = 0;//0 means we are not shifting, 1 means we are shifting to the right, and -1 means we are shifting to the left.
@@ -83,16 +83,17 @@ function Guunk() {
     //we will
     this.screenShiftLeftRight = function(){
 
-        if(gg.player.locX < 384 || shiftState == 1){
+        if(gg.player.locX < 576){
             shiftState=1;
             var allObjectsToShift = $('.object');
 
+            gg.player.locX += leftRightCamSpeed;
             console.log("SIZE OF ARRAY: ", allObjectsToShift.length)
             for(let i = 0; i < allObjectsToShift.length;i++){
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
                 if(gg.player.velocX < 0){
-                    allObjectsToShift[i].style.left = offsets.left - gg.player.velocX + "px";
+                    allObjectsToShift[i].style.left = offsets.left - gg.player.velocX + leftRightCamSpeed + "px";
                 }else {
                     allObjectsToShift[i].style.left = offsets.left + leftRightCamSpeed + "px";
                 }
@@ -103,16 +104,18 @@ function Guunk() {
             }
             // $('#slime').css('left', gg.player.locX);
             // $('#slime').css('top', gg.player.locY);
-        }else if(gg.player.locX > 1536 || shiftState == -1){
+        }else if(gg.player.locX > 1344){
             shiftState=-1;
 
             var allObjectsToShift = $('.object');
 
+            //the player needs to be moved the camspeed, because he doesn't move that.
+            gg.player.locX -= leftRightCamSpeed;
             for(let i = 0; i < allObjectsToShift.length;i++){
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
                 if(gg.player.velocX > 0){
-                    allObjectsToShift[i].style.left = offsets.left - gg.player.velocX + "px";
+                    allObjectsToShift[i].style.left = offsets.left - gg.player.velocX - leftRightCamSpeed + "px";
                 }else{
                     allObjectsToShift[i].style.left = offsets.left - leftRightCamSpeed + "px";
                 }
@@ -206,7 +209,7 @@ function mainLoop(){
     $('#slime').css('top', gg.player.locY);
     //console.log(1);
     gg.player.update(gg.keys);
-    console.log("This is the players location: ", gg.player.locX);
+    console.log("This is the players location: ", gg.player.locX, "::: Velocity: ", gg.player.velocX);
 
     //in this function/method we check if the blob is
     gg.screenShiftUpDown();

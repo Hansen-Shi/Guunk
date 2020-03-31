@@ -12,7 +12,7 @@
 var Player = function(){
     var self = this;
     this.paddingLeftRight = 10;
-    this.locX = 400;
+    this.locX = 800;
     this.locY = 525;
     this.velocX = 0;
     this.velocY = 0;
