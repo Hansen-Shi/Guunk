@@ -8,7 +8,8 @@ function Guunk() {
         leftheld:false,
         rightheld:false,
         up:false,
-        space:false
+        space:false,
+        shift:false
     };
     //the leftheld and rightheld are only to be used to remember that a key is being held while we are halting movement because another key was just pressed.
     this.options={
@@ -18,10 +19,11 @@ function Guunk() {
     }
     this.player = new Player();
     const action = {
-        LEFT: 37,
-        RIGHT: 39,
-        UP: 38,
+        LEFT: 65,
+        RIGHT: 68,
+        UP: 87,
         SPACE: 32,
+        SHIFT: 16
     };
 
     this.initilize=function(){
@@ -51,6 +53,9 @@ function Guunk() {
         if(event.keyCode == action.UP){
             gg.keys.up = true;
         }
+        if(event.keyCode == action.SHIFT){
+            gg.keys.shift = true;
+        }
     });
 
     document.addEventListener("keyup", function (event) {
@@ -73,6 +78,9 @@ function Guunk() {
         }
         if(event.keyCode == action.UP){
             gg.keys.up = false;
+        }
+        if(event.keyCode == action.SHIFT){
+            gg.keys.shift = false;
         }
     });
 
