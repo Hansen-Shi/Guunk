@@ -136,6 +136,7 @@ var Player = function(){
                 if ((this.locY + this.height > blockY + 3) //bottom of player is below top of block
                     && (this.locY < blockY + blockHeight)) { //top of player is above bottom of block
                     if ((this.locX + this.width) > blockX && (this.locX) < (blockX + blockWidth)) {
+                        console.log("side");
                         return (10);
                     }
                 }
@@ -266,7 +267,7 @@ var Player = function(){
             const blockHeight = acidArray[i].offsetHeight;
 
             if(this.velocY > 0){
-                if( (this.locX + this.width) > blockX  &&  (this.locX) < (blockX + blockWidth)){
+                if( (this.locX + this.width - this.acidPaddingLeftRight) > blockX  &&  (this.locX+this.acidPaddingLeftRight) < (blockX + blockWidth)){
                     if((this.locY + this.velocY) < (blockY+blockHeight) && (this.locY + this.height) > blockY){
                         if(this.bootMan){
                             this.velocY = 0;
