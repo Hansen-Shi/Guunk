@@ -244,6 +244,10 @@ function mainLoop(){
 
     if(gg.player.hasWonGame){
         document.getElementById("gameOverScreen").style.visibility = "visible";
+        var fortniteArray = $('.fortnite');
+        for(let i = 0; i <fortniteArray.length;i++){
+            fortniteArray[i].style.visibility="visible";
+        }
     }
     // console.log("This is the screen width", screen_w);
     $('#slime').css('left', gg.player.locX);

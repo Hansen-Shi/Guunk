@@ -15,7 +15,12 @@ body{
     z-index: 1;
     visibility: visible;
 }
-
+.fortnite{
+    position:absolute;
+    background-image: url('../images/fortnitedance.gif');
+    z-index: 2;
+    visibility: hidden;
+}
 
 #titleSlime1{
     position:absolute;
