@@ -2,11 +2,6 @@ body{
     overflow:hidden;
     margin:0;
 }
-
-
-
-
-
 #titleScreen{
     position: absolute;
     text-align: center;
@@ -40,11 +35,6 @@ body{
     width: 100px;
     height: 25px;
 }
-
-
-
-
-
 
 
 #background-jank{
