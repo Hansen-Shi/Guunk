@@ -140,8 +140,8 @@ var Player = function(){
         document.getElementById("boot").hidden = true;
         document.getElementById("slime").style.width = "70px";
         document.getElementById("slime").style.height = "70px";
-        this.width = 80;
-        this.height = 80;
+        this.width = 70;
+        this.height = 70;
         this.bootMan=true;
     }
     this.powerUpCollision = function(){
@@ -244,10 +244,17 @@ var Player = function(){
             const blockHeight = acidArray[i].offsetHeight;
 
             if(this.velocY > 0){
-                if( (this.locX + this.width - this.acidPaddingLeftRight) > blockX  &&  (this.locX+this.acidPaddingLeftRight) < (blockX + blockWidth)){
-                    //to know if we are going to bonk with a block we need to check if the top of our character is above the bottom of the block,and the bottom is below the top of the block,
+                if( (this.locX + this.width) > blockX  &&  (this.locX) < (blockX + blockWidth)){
+                    console.log("we In here");
                     if((this.locY + this.velocY) < (blockY+blockHeight) && (this.locY + this.height) > blockY){
-                        this.die();
+                        if(this.bootMan){
+                            this.velocY = 0;
+                            this.locY = blockY - this.height;
+                            this.jumpCnt = 0;
+                            this.hoverCounter = 0;
+                        }else{
+                            this.die();
+                        }
                     }
                 }
             }
@@ -290,8 +297,7 @@ var Player = function(){
             
         }
 
-         if(!this.bootMan)
-            this.acidPitCollisions();
+         this.acidPitCollisions();
 
          this.powerUpCollision();
 
