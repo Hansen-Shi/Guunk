@@ -54,7 +54,9 @@ body{
 #gameOverScreen{
     position: absolute;
     text-align: center;
-    background-image: url('https://media.giphy.com/media/26FPImXfDlv4AFbBC/giphy.gif');
+    background-image: url('../images/fortnite.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
     width: 1920px;
     height: 1080px;
     top: 0;
