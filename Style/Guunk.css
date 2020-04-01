@@ -32,3 +32,9 @@ body{
     z-index: 0;
 }
 
+.acidpit{
+    position:absolute;
+    background-image: url('../images/pit.gif');
+    background-size: cover;
+    background-position: center center;
+}

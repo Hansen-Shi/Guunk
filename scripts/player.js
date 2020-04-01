@@ -12,6 +12,7 @@
 var Player = function(){
     var self = this;
     this.paddingLeftRight = 10;
+    this.acidPaddingLeftRight = 8;
     this.locX = 800;
     this.locY = 525;
     this.velocX = 0;
@@ -34,6 +35,54 @@ var Player = function(){
 
     this.collidingFromSide = function(){
         var bricksArray = $('.brick');
+
+
+
+        var acidPitArray = $('.acidpit');
+
+        for(let i = 0; i < acidPitArray.length; i++){
+            console.log(i);
+            var offsets = acidPitArray[i].getBoundingClientRect();
+            const blockX = offsets.left;
+            const blockY = offsets.top;
+            const blockWidth = acidPitArray[i].offsetWidth;
+            const blockHeight = acidPitArray[i].offsetHeight;
+
+
+            console.log("dis block");
+            console.log(blockWidth);
+            console.log(blockHeight);
+
+
+
+            let keepGoing = -1;
+            //we are on the right side of the block
+            if((blockX + (blockWidth/2)) < this.locX){
+                if(this.velocX < 0){
+                    keepGoing = 1;
+                }
+
+            }else{
+                if(this.velocX > 0){
+                    keepGoing = 1;
+                }
+                //we are on the left side of the block
+
+            }
+
+            if(keepGoing !== -1) {
+                if ((this.locY + this.height > blockY + 1) //bottom of player is below top of block
+                    && (this.locY < blockY + blockHeight)) { //top of player is above bottom of block
+                    if ((this.locX + this.width) > (blockX) && (this.locX) < (blockX + blockWidth)) {
+                        console.log("why tho?");
+                        return (10);
+                    }
+                }
+            }
+
+        }
+
+
         for(let i = 0; i < bricksArray.length; i++) {
             //when colliding with something left/right we first check if the players position is > or < the blocks position
 
@@ -49,22 +98,47 @@ var Player = function(){
             // console.log(this.locX);
             // console.log(this.velocX);
 
-
-
-            //we first check if the bottom of the player is below the top of the block, and above the bottom of block
-            //and then we check if the top of the player is above the bottom of the block, and below the top of the block
-            if ( (this.locY + this.height > blockY+3) //bottom of player is below top of block
-                && (this.locY < blockY + blockHeight)) { //top of player is above bottom of block
-
-                if( (this.locX + this.width) > blockX  &&  (this.locX) < (blockX + blockWidth)){
-                    return 10;
+            let keepGoing = -1;
+            //we are on the right side of the block
+            if((blockX + (blockWidth/2)) < this.locX){
+                if(this.velocX < 0){
+                    keepGoing = 1;
                 }
 
+            }else{
+                if(this.velocX > 0){
+                    keepGoing = 1;
+                }
+                //we are on the left side of the block
 
             }
+
+            if(keepGoing !== -1) {
+                //we first check if the bottom of the player is below the top of the block, and above the bottom of block
+                //and then we check if the top of the player is above the bottom of the block, and below the top of the block
+                if ((this.locY + this.height > blockY + 3) //bottom of player is below top of block
+                    && (this.locY < blockY + blockHeight)) { //top of player is above bottom of block
+                    if ((this.locX + this.width) > blockX && (this.locX) < (blockX + blockWidth)) {
+                        return (10);
+                    }
+                }
+            }
         }
+
+
         return(-1);
-    }
+    };
+
+
+    this.die = function(){
+        this.locX = 800;
+        this.locY = 525;
+        this.velocX = 0;
+        this.velocY = 0;
+        this.jumpCnt = 0;
+        this.canJump = true;
+        this.hoverCounter = 0;
+    };
 
     this.collidingWithBlockFromTop = function(){
         // console.log("colliding with block from top is called");
@@ -108,7 +182,31 @@ var Player = function(){
 
         }
         return(-1);
-    }
+    };
+
+    this.acidPitCollisions = function(){
+        var acidArray = $('.acidpit');
+
+
+
+        for(let i = 0; i < acidArray.length;i++){
+
+            var offsets = acidArray[i].getBoundingClientRect();
+            const blockX = offsets.left;
+            const blockY = offsets.top;
+            const blockWidth = acidArray[i].offsetWidth;
+            const blockHeight = acidArray[i].offsetHeight;
+
+            if(this.velocY > 0){
+                if( (this.locX + this.width - this.acidPaddingLeftRight) > blockX  &&  (this.locX+this.acidPaddingLeftRight) < (blockX + blockWidth)){
+                    //to know if we are going to bonk with a block we need to check if the top of our character is above the bottom of the block,and the bottom is below the top of the block,
+                    if((this.locY + this.velocY) < (blockY+blockHeight) && (this.locY + this.height) > blockY){
+                        this.die();
+                    }
+                }
+            }
+        }
+    };
 
     this.update = function(keys){
         if (keys.left && this.leftAllow){
@@ -125,10 +223,12 @@ var Player = function(){
             }
             
         }
-         //TODO: check sideways shit
-         const XCoordOfBlockThatWeAreCollidingWith = this.collidingFromSide();
+
+        this.acidPitCollisions();
+
+
+        const XCoordOfBlockThatWeAreCollidingWith = this.collidingFromSide();
          if(XCoordOfBlockThatWeAreCollidingWith !== -1){
-            // this.locX=XCoordOfBlockThatWeAreCollidingWith;
              this.velocX=0;
          }else {
              this.locX += this.velocX;
@@ -191,7 +291,7 @@ var Player = function(){
             }
 
         }else{
-            //otherwise, our next position is going to collide with the block, so place ourselves ontop of it.
+            //otherwise, our next position is going to collide ppwith the block, so place ourselves ontop of it.
             this.velocY = 0;
             this.locY = x - this.height; //to be fucking honest I'm clearly not paying enough attention because I have no fucking idea why 72 is the magic number.. it should be 50..?? or 100? the height? or the height/2?
             this.jumpCnt = 0;
@@ -202,6 +302,6 @@ var Player = function(){
         //console.log(this.canJump);
     }; //end update
     
-    console.log("proper player");
+    // console.log("proper player");
 
-}
+};
