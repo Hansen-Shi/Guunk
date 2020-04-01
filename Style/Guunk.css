@@ -20,6 +20,7 @@ body{
     background-image: url('../images/fortnitedance.gif');
     z-index: 2;
     visibility: hidden;
+    display: none;
 }
 
 .title{

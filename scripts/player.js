@@ -45,6 +45,7 @@ var Player = function(){
         this.hasWonGame = true;
         //maybe disable movement?
         document.getElementById("win-game-star").style.visibility = "hidden";
+        $('.fortnite').css('display','block');
     };
     this.updateGlider = function(){
         document.getElementById("glider-equip").style.left = this.locX - 30+ "px";
