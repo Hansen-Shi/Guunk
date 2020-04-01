@@ -9,10 +9,10 @@ function Guunk() {
     this.xOffset = 0;
     this.yOffset = 0;
 
-    /*
+
     var timerDate = new Date().getTime();
 
-    var x = setInterval(function(){
+    this.timer = setInterval(function(){
         var now = new Date().getTime();
 
         var distance = now - timerDate;
@@ -21,10 +21,19 @@ function Guunk() {
 
         var seconds = Math.floor((distance % (1000*60))/1000);
 
-        var ms = Math.floor((distance % (1000)));
 
-    },1);
-*/
+        //ms is actually tenths of a second just so the time doesn't look silly.
+        var ms = Math.floor((distance % (1000)) / 100);
+
+
+        if(seconds < 10){
+            document.getElementById("time").textContent = "" + minutes + ":" + "0" + seconds + "." + ms;
+        }else {
+            document.getElementById("time").textContent = "" + minutes + ":" + seconds + "." + ms;
+        }
+    },100);
+
+
     //so for the left/right shifting the way it will work is we will have a threshold that once we pass, we will shift everything until we are centered as much as we want.
     //0 means we are not shifting, 1 means we are shifting to the right, and -1 means we are shifting to the left.
     //1920 wide  if we get <384 or > 1536, then we will shift until we're at 576 and 1344 respectively
@@ -292,6 +301,8 @@ function mainLoop(){
     }
 
     if(gg.player.hasWonGame){
+        clearInterval(gg.timer);
+        document.getElementById("time").style.backgroundColor = "white";
         document.getElementById("gameOverScreen").style.visibility = "visible";
         var fortniteArray = $('.fortnite');
         for(let i = 0; i <fortniteArray.length;i++){
