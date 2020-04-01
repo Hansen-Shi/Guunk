@@ -213,6 +213,7 @@ function Guunk() {
         }
         if(event.keyCode == action.SHIFT){
             gg.keys.shift = false;
+            document.getElementById("glider-equip").style.visibility = "hidden";
         }
     });
 
@@ -230,6 +231,10 @@ function mainLoop(){
         console.log("this happens");
         gg.unshiftEverything();
         gg.player.isAlive = true;
+    }
+
+    if(gg.player.hasWonGame){
+        document.getElementById("gameOverScreen").style.visibility = "visible";
     }
     // console.log("This is the screen width", screen_w);
     $('#slime').css('left', gg.player.locX);

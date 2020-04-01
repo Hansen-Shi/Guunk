@@ -130,3 +130,24 @@ body{
     background-size:cover;
     background-position: center center;
 }
+
+#glider-ground{
+    position:absolute;
+    background-image: url('../images/paraglider.gif');
+    background-size:cover;
+    background-position: center center;
+}
+
+#glider-equip{
+    position:absolute;
+    background-image: url('../images/paraglider-fin.agif');
+    background-size:cover;
+    background-position: center center;
+    visibility: hidden;
+}
+#win-game-star{
+    position:absolute;
+    background-image: url('../images/star.agif');
+    background-size:cover;
+    background-position: center center;
+}
