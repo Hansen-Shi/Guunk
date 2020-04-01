@@ -141,7 +141,7 @@ var Player = function(){
         this.jumpCnt = 0;
         this.canJump = true;
         this.hoverCounter = 0;
-        location.reload();
+        location.reload(true);
     };
 
     this.collidingWithBlockFromTop = function(){
