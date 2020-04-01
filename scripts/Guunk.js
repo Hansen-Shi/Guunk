@@ -44,12 +44,6 @@ function Guunk() {
         requestAnimationFrame(mainLoop);
     };
 
-    this.setTitleScreenDimensions = function(){
-        document.getElementById("titleScreen").style.height = window.innerHeight;
-        document.getElementById("titleScreen").style.width = window.innerWidth;
-        document.getElementById("gameOverScreen").style.height = window.innerHeight;
-        document.getElementById("gameOverScreen").style.width = window.innerWidth;
-    }
     this.unshiftEverything = function(){
 
         var allObjectsToShit = $('.object');
@@ -230,16 +224,17 @@ function Guunk() {
 }
 
 function mainLoop(){
+    document.getElementById("titleScreen").style.height = window.innerHeight + "px";
+    document.getElementById("titleScreen").style.width = window.innerWidth + "px";
+    document.getElementById("gameOverScreen").style.height = window.innerHeight + "px";
+    document.getElementById("gameOverScreen").style.width = window.innerWidth + "px";
     $('#StartBtn').on('click',function(){
             $('#titleScreen').css('visibility', 'hidden');
     });
 
 
-    document.getElementById("titleScreen").style.height = window.innerHeight + "px";
 
-    document.getElementById("titleScreen").style.width = window.innerWidth + "px";
-    document.getElementById("gameOverScreen").style.height = window.innerHeight + "px";
-    document.getElementById("gameOverScreen").style.width = window.innerWidth + "px";
+
 
     if(!gg.player.isAlive){
         console.log("this happens");
@@ -249,6 +244,10 @@ function mainLoop(){
 
     if(gg.player.hasWonGame){
         document.getElementById("gameOverScreen").style.visibility = "visible";
+        var fortniteArray = $('.fortnite');
+        for(let i = 0; i <fortniteArray.length;i++){
+            fortniteArray[i].style.visibility="visible";
+        }
     }
     // console.log("This is the screen width", screen_w);
     $('#slime').css('left', gg.player.locX);

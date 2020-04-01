@@ -7,7 +7,7 @@ body{
     text-align: center;
     background: url('../images/startscreen.agif');
     background-size:cover;
-    background-size: 1920px;
+    background-repeat: no-repeat;
     width: 1920px;
     height: 1080px;
     top: 0;
@@ -15,7 +15,12 @@ body{
     z-index: 1;
     visibility: visible;
 }
-
+.fortnite{
+    position:absolute;
+    background-image: url('../images/fortnitedance.gif');
+    z-index: 2;
+    visibility: hidden;
+}
 
 #titleSlime1{
     position:absolute;
@@ -54,7 +59,9 @@ body{
 #gameOverScreen{
     position: absolute;
     text-align: center;
-    background-image: url('https://media.giphy.com/media/26FPImXfDlv4AFbBC/giphy.gif');
+    background-image: url('../images/fortnite.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
     width: 1920px;
     height: 1080px;
     top: 0;
@@ -62,14 +69,6 @@ body{
     z-index: 1;
     visibility: hidden;
 }
-
-.gameover{
-    font-family: Marker Felt, fantasy;
-    font-size: 100px;
-    font-weight: bold;
-    text-align: center;
-}
-
 
 
 
