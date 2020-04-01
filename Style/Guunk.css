@@ -67,7 +67,6 @@ body{
     font-size: 100px;
     font-weight: bold;
     text-align: center;
-    
 }
 
 
@@ -140,6 +139,7 @@ body{
     background-size:cover;
     background-position: center center;
     visibility: hidden;
+    z-index: 1;
 }
 #win-game-star{
     position:absolute;
