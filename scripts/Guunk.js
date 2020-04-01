@@ -92,7 +92,7 @@ function Guunk() {
             var allObjectsToShift = $('.object');
 
             gg.player.locX += leftRightCamSpeed;
-            console.log("SIZE OF ARRAY: ", allObjectsToShift.length)
+            // console.log("SIZE OF ARRAY: ", allObjectsToShift.length)
             for(let i = 0; i < allObjectsToShift.length;i++){
                 var offsets = allObjectsToShift[i].getBoundingClientRect();
                 //const yposn = offsets.top;
@@ -139,7 +139,7 @@ function Guunk() {
         if (event.keyCode == action.RIGHT || event.keyCode == 68) {
             gg.keys.right = true;
             if(gg.keys.left) {
-                console.log("we are holding left, and we just pressed right, so we will hold left");
+                // console.log("we are holding left, and we just pressed right, so we will hold left");
                 gg.keys.leftheld = true;
                 gg.keys.left = false;
             }
@@ -198,12 +198,12 @@ function Guunk() {
 }
 
 function mainLoop(){
-    console.log("This is the screen width", screen_w);
+    // console.log("This is the screen width", screen_w);
     $('#slime').css('left', gg.player.locX);
     $('#slime').css('top', gg.player.locY);
     //console.log(1);
     gg.player.update(gg.keys);
-    console.log("This is the players location: ", gg.player.locX, "::: Velocity: ", gg.player.velocX);
+    // console.log("This is the players location: ", gg.player.locX, "::: Velocity: ", gg.player.velocX);
 
     //in this function/method we check if the blob is
     gg.screenShiftUpDown();
