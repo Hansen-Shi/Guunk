@@ -306,6 +306,9 @@ var Player = function(){
     };
 
     this.update = function(keys){
+        if(this.velocY > 100){
+            this.die();
+        }
         if (keys.left && this.leftAllow){
             $('#slime').css('-transform', 'scaleX(1)');
             if(this.velocX > -6){
