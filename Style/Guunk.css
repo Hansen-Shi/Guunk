@@ -5,7 +5,8 @@ body{
 #titleScreen{
     position: absolute;
     text-align: center;
-    background: url('../images/startscreen.gif');
+    background: url('../images/startscreen.agif');
+    background-size:cover;
     background-size: 1920px;
     width: 1920px;
     height: 1080px;
