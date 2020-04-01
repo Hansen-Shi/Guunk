@@ -11,6 +11,7 @@
 
 var Player = function(){
     var self = this;
+    var allDivs;
     this.paddingLeftRight = 10;
     this.acidPaddingLeftRight = 8;
     this.locX = 800;
@@ -32,7 +33,9 @@ var Player = function(){
     this.spitAllow = true;
     this.hoverAllow = true;
 
+    this.initialize = function(){
 
+    };
     this.collidingFromSide = function(){
         var bricksArray = $('.brick');
 
@@ -138,6 +141,7 @@ var Player = function(){
         this.jumpCnt = 0;
         this.canJump = true;
         this.hoverCounter = 0;
+        location.reload();
     };
 
     this.collidingWithBlockFromTop = function(){
@@ -303,5 +307,5 @@ var Player = function(){
     }; //end update
     
     // console.log("proper player");
-
+this.initialize();
 };
