@@ -251,7 +251,12 @@ function mainLoop(){
 
 
     $('#StartBtn').on('click',function(){
-            $('#titleScreen').css('visibility', 'hidden');
+        if($('#hardCheck').prop('checked')) {
+            gg.player.hardMode = true;
+        }else{
+            gg.player.hardMode = false;
+        }
+        $('#titleScreen').css('visibility', 'hidden');
     });
 
 

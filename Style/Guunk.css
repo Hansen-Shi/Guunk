@@ -129,6 +129,12 @@ body{
     height: 60px;
     z-index: 0;
 }
+#hardText{
+    font-family: Marker Felt;
+    font-size: 30px;
+    text-align: center;
+    color: #87CEFA;
+}
 
 .acidpit{
     position:absolute;

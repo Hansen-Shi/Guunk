@@ -23,6 +23,8 @@ var Player = function(){
     this.width = 50;
     this.height = 50;
     this.hoverCounter = 0;
+    this.hardMode = false;
+
 
 
     //these are the permissions you have to unlock
@@ -36,6 +38,37 @@ var Player = function(){
     this.hasWonGame = false;
     this.initialize = function(){
 
+    };
+
+    this.resetPermissions = function(){
+        /*
+            document.getElementById("slime").src = "images/playerdoublejumpboot.agif";
+        document.getElementById("boot").hidden = true;
+        document.getElementById("slime").style.width = "75px";
+        document.getElementById("slime").style.height = "75px";
+        this.width = 75;
+        this.height = 75;
+        this.bootMan=true;
+         */
+        location.reload(true);
+        document.getElementById("slime").style.width = "50px";
+        document.getElementById("slime").style.height = "50px";
+        document.getElementById("slime").src = "images/player.agif";
+
+        var allPowerups = $('.powerup');
+        for(let i = 0; i < allPowerups.length; i++){
+            allPowerups[i].style.visibility = "visible";
+        }
+
+        this.leftAllow = true;
+        this.rightAllow = true;
+        this.jumpAllow = true;
+        this.doubleJumpAllow = false;
+        this.spitAllow = true;
+        this.hoverAllow = false;
+        this.bootMan = false;
+        this.hasWonGame = false;
+        this.hardMode = false;
     };
     this.collectGlider = function(){
         this.hoverAllow=true;
@@ -201,6 +234,9 @@ var Player = function(){
 
 
     this.die = function(){
+        if(this.hardMode){
+            this.resetPermissions();
+        }
         this.isAlive =false;
         this.locX = 800;
         this.locY = 525;
@@ -291,7 +327,7 @@ var Player = function(){
 
     this.collectDoubleJump = function(){
         this.doubleJumpAllow = true;
-        document.getElementById("jump").hidden = true;
+        document.getElementById("jump").style.visibility= "hidden";
         document.getElementById("slime").src = "images/playerafterdoublejump.gif"
     };
 
@@ -308,6 +344,7 @@ var Player = function(){
     };
 
     this.update = function(keys){
+        console.log(this.hardMode);
         if(this.velocY > 100){
             this.die();
         }
