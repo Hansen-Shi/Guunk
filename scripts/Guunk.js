@@ -222,6 +222,11 @@ function Guunk() {
 }
 
 function mainLoop(){
+    $('#StartBtn').on('click',function(){
+            $('#titleScreen').hide();
+    });
+
+
     if(!gg.player.isAlive){
         console.log("this happens");
         gg.unshiftEverything();

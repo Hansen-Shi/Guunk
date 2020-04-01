@@ -2,6 +2,51 @@ body{
     overflow:hidden;
     margin:0;
 }
+
+
+
+
+
+#titleScreen{
+    position: absolute;
+    text-align: center;
+    background-color: #6699cc;
+    width: 1920px;
+    height: 1080px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.title{
+    font-family: Marker Felt, fantasy;
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+
+#StartBtn{
+    position: relative;
+    width: 500px;
+    height: 100px;
+    margin-top: 150px;
+}
+
+.btnStyle{
+    font-size: 50px;
+    margin-top: 50px;
+    width: 100px;
+    height: 25px;
+}
+
+
+
+
+
+
+
 #background-jank{
     position: absolute;
     background-image: url('https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/369060/e956b1c351981ac95c5ae2c0a22a48d9b352fcce.jpg');
