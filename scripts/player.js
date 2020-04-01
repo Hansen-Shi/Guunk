@@ -11,7 +11,7 @@
 
 var Player = function(){
     var self = this;
-    var allDivs;
+    this.isAlive = true;
     this.paddingLeftRight = 10;
     this.acidPaddingLeftRight = 8;
     this.locX = 800;
@@ -44,7 +44,7 @@ var Player = function(){
         var acidPitArray = $('.acidpit');
 
         for(let i = 0; i < acidPitArray.length; i++){
-            console.log(i);
+            // console.log(i);
             var offsets = acidPitArray[i].getBoundingClientRect();
             const blockX = offsets.left;
             const blockY = offsets.top;
@@ -52,9 +52,9 @@ var Player = function(){
             const blockHeight = acidPitArray[i].offsetHeight;
 
 
-            console.log("dis block");
-            console.log(blockWidth);
-            console.log(blockHeight);
+            // console.log("dis block");
+            // console.log(blockWidth);
+            // console.log(blockHeight);
 
 
 
@@ -134,6 +134,7 @@ var Player = function(){
 
 
     this.die = function(){
+        this.isAlive =false;
         this.locX = 800;
         this.locY = 525;
         this.velocX = 0;
@@ -141,7 +142,6 @@ var Player = function(){
         this.jumpCnt = 0;
         this.canJump = true;
         this.hoverCounter = 0;
-        location.reload(true);
     };
 
     this.collidingWithBlockFromTop = function(){

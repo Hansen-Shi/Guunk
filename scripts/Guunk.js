@@ -5,8 +5,11 @@ function Guunk() {
     const leftRightCamSpeed = 5;
     const shiftAccel = .8;
 
+    this.xOffset = 0;
+    this.yOffset = 0;
+
     //so for the left/right shifting the way it will work is we will have a threshold that once we pass, we will shift everything until we are centered as much as we want.
-    var shiftState = 0;//0 means we are not shifting, 1 means we are shifting to the right, and -1 means we are shifting to the left.
+    //0 means we are not shifting, 1 means we are shifting to the right, and -1 means we are shifting to the left.
     //1920 wide  if we get <384 or > 1536, then we will shift until we're at 576 and 1344 respectively
 
 
@@ -40,6 +43,25 @@ function Guunk() {
     this.initialize=function(){
         requestAnimationFrame(mainLoop);
     };
+    this.unshiftEverything = function(){
+
+        var allObjectsToShit = $('.object');
+
+
+        console.log(this["xOffset"]);
+        console.log(this["yOffset"]);
+
+        for(let i = 0; i < allObjectsToShit.length;i++){
+            var offsets = allObjectsToShit[i].getBoundingClientRect();
+            console.log("old style left", allObjectsToShit[i].style.left);
+            allObjectsToShit[i].style.top = offsets.top+this.yOffset + "px";
+
+            allObjectsToShit[i].style.left = offsets.left+this.xOffset + "px";
+            console.log("new style left", allObjectsToShit[i].style.left);
+        }
+        this.yOffset=0;
+        this.xOffset=0;
+    };
 
 
     this.screenShiftUpDown = function(){
@@ -60,7 +82,7 @@ function Guunk() {
                 //const yposn = offsets.top;
                 allObjectsToShift[i].style.top = offsets.top + postShiftAmt + "px";
             }
-
+            this.yOffset-=postShiftAmt;
 
         //screen height - (screen height * 25%)
         }else if(gg.player.locY > window.innerHeight - (window.innerHeight*1.0/2.5)){
@@ -77,6 +99,7 @@ function Guunk() {
                     allObjectsToShift[i].style.top = offsets.top - postShiftAmt + "px";
                 }
             }
+            this.yOffset+=postShiftAmt;
         }else{
             postShiftAmt=7;
         }
@@ -88,7 +111,6 @@ function Guunk() {
 
         //screen width * 33%
         if(gg.player.locX < window.innerWidth*1.0/3){
-            shiftState=1;
             var allObjectsToShift = $('.object');
 
             gg.player.locX += leftRightCamSpeed;
@@ -102,6 +124,7 @@ function Guunk() {
                     allObjectsToShift[i].style.left = offsets.left + leftRightCamSpeed + "px";
                 }
             }
+            this["xOffset"] -= leftRightCamSpeed;
 
 
             //screen width - screen width * 33%
@@ -121,6 +144,7 @@ function Guunk() {
                     allObjectsToShift[i].style.left = offsets.left - leftRightCamSpeed + "px";
                 }
             }
+            this.xOffset+=leftRightCamSpeed;
 
         }
 
@@ -198,11 +222,16 @@ function Guunk() {
 }
 
 function mainLoop(){
+    if(!gg.player.isAlive){
+        console.log("this happens");
+        gg.unshiftEverything();
+        gg.player.isAlive = true;
+    }
     // console.log("This is the screen width", screen_w);
     $('#slime').css('left', gg.player.locX);
     $('#slime').css('top', gg.player.locY);
     //console.log(1);
-    gg.player.update(gg.keys);
+    gg.player.update(gg.keys,gg.xOffset,gg.yOffset);
     // console.log("This is the players location: ", gg.player.locX, "::: Velocity: ", gg.player.velocX);
 
     //in this function/method we check if the blob is
