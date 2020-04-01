@@ -423,7 +423,7 @@ var Player = function(){
                 this.velocY = 0;
                 this.jumpCnt = 0;
             } else{
-                if(keys.shift && this.hoverAllow && this.velocY > 0 && this.hoverCounter < 50){
+                if(keys.shift && this.hoverAllow && this.velocY > 0 && this.hoverCounter < 65){
                     document.getElementById("glider-equip").style.visibility = "visible";
                     this.velocY = 1;
                     this.hoverCounter += 1;
