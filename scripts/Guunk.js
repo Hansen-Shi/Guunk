@@ -9,6 +9,22 @@ function Guunk() {
     this.xOffset = 0;
     this.yOffset = 0;
 
+    /*
+    var timerDate = new Date().getTime();
+
+    var x = setInterval(function(){
+        var now = new Date().getTime();
+
+        var distance = now - timerDate;
+
+        var minutes = Math.floor((distance/(1000*60)));
+
+        var seconds = Math.floor((distance % (1000*60))/1000);
+
+        var ms = Math.floor((distance % (1000)));
+
+    },1);
+*/
     //so for the left/right shifting the way it will work is we will have a threshold that once we pass, we will shift everything until we are centered as much as we want.
     //0 means we are not shifting, 1 means we are shifting to the right, and -1 means we are shifting to the left.
     //1920 wide  if we get <384 or > 1536, then we will shift until we're at 576 and 1344 respectively
@@ -237,6 +253,8 @@ function mainLoop(){
     document.getElementById("titleScreen").style.width = window.innerWidth + "px";
     document.getElementById("gameOverScreen").style.height = window.innerHeight + "px";
     document.getElementById("gameOverScreen").style.width = window.innerWidth + "px";
+    document.getElementById("StartBtn").style.marginTop = (window.innerHeight*1.0/2.5) + "px"
+
     /*
     <div style="height:60px;width:60px;top:1900px;left:150px"id = "w-key"></div>
     <div style="height:60px;width:60px;top:1965px;left:120px"id = "a-key"></div>
