@@ -31,11 +31,24 @@ var Player = function(){
     this.jumpAllow = true;
     this.doubleJumpAllow = false;
     this.spitAllow = true;
-    this.hoverAllow = true;
+    this.hoverAllow = false;
     this.bootMan = false;
-
+    this.hasWonGame = false;
     this.initialize = function(){
 
+    };
+    this.collectGlider = function(){
+        this.hoverAllow=true;
+        document.getElementById("glider-ground").style.visibility = "hidden";
+    };
+    this.collectWinStar = function(){
+        this.hasWonGame = true;
+        //maybe disable movement?
+        document.getElementById("win-game-star").style.visibility = "hidden";
+    };
+    this.updateGlider = function(){
+        document.getElementById("glider-equip").style.left = this.locX - 30+ "px";
+        document.getElementById("glider-equip").style.top = this.locY-(this.height) + "px";
     };
     this.collidingFromSide = function(){
         var bricksArray = $('.brick');
@@ -164,6 +177,12 @@ var Player = function(){
                     }
                     if(powerUpArray[i].id === "jump"){
                         this.collectDoubleJump();
+                    }
+                    if(powerUpArray[i].id === "glider-ground"){
+                        this.collectGlider();
+                    }
+                    if(powerUpArray[i].id === "win-game-star"){
+                        this.collectWinStar();
                     }
 
                 }
@@ -363,10 +382,12 @@ var Player = function(){
                 this.jumpCnt = 0;
             } else{
                 if(keys.shift && this.hoverAllow && this.velocY > 0 && this.hoverCounter < 50){
+                    document.getElementById("glider-equip").style.visibility = "visible";
                     this.velocY = 1;
                     this.hoverCounter += 1;
                 }
                 else{
+                    document.getElementById("glider-equip").style.visibility = "hidden";
                     this.velocY = this.velocY + .8;
                 }
             }
@@ -379,6 +400,9 @@ var Player = function(){
             this.hoverCounter = 0;
         }
 
+        if(this.hoverAllow){
+            this.updateGlider();
+        }
 
         //console.log(this.canJump);
     }; //end update

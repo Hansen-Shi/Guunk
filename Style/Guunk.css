@@ -5,12 +5,25 @@ body{
 #titleScreen{
     position: absolute;
     text-align: center;
-    background-color: #6699cc;
+    background: url('../images/startscreen.gif');
+    background-size: 1920px;
     width: 1920px;
     height: 1080px;
     top: 0;
     left: 0;
     z-index: 1;
+    visibility: visible;
+}
+
+
+#titleSlime1{
+    position:absolute;
+    background:url('../images/slime.gif');
+    background-size:100px;
+    height:100px;
+    width:100px;
+    top:500px;
+    left:500px;
 }
 
 .title{
@@ -18,6 +31,7 @@ body{
     font-size: 100px;
     font-weight: bold;
     text-align: center;
+    color: #87CEFA;
     
 }
 
@@ -26,15 +40,40 @@ body{
     position: relative;
     width: 500px;
     height: 100px;
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 .btnStyle{
     font-size: 50px;
-    margin-top: 50px;
     width: 100px;
     height: 25px;
 }
+
+
+#gameOverScreen{
+    position: absolute;
+    text-align: center;
+    background-image: url('https://media.giphy.com/media/26FPImXfDlv4AFbBC/giphy.gif');
+    width: 1920px;
+    height: 1080px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.gameover{
+    font-family: Marker Felt, fantasy;
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+
+
+
+
 
 
 #background-jank{
@@ -84,6 +123,27 @@ body{
 #jump{
     position:absolute;
     background-image: url('../images/jump.png');
+    background-size:cover;
+    background-position: center center;
+}
+
+#glider-ground{
+    position:absolute;
+    background-image: url('../images/paraglider.gif');
+    background-size:cover;
+    background-position: center center;
+}
+
+#glider-equip{
+    position:absolute;
+    background-image: url('../images/paraglider-fin.agif');
+    background-size:cover;
+    background-position: center center;
+    visibility: hidden;
+}
+#win-game-star{
+    position:absolute;
+    background-image: url('../images/star.agif');
     background-size:cover;
     background-position: center center;
 }
