@@ -16,6 +16,7 @@ body{
     top: 0;
     left: 0;
     z-index: 1;
+    visibility: visible;
 }
 
 
@@ -61,7 +62,8 @@ body{
     height: 1080px;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 1;
+    visibility: hidden;
 }
 
 .gameover{

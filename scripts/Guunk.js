@@ -223,7 +223,7 @@ function Guunk() {
 
 function mainLoop(){
     $('#StartBtn').on('click',function(){
-            $('#titleScreen').hide();
+            $('#titleScreen').css('visibility', 'hidden');
     });
 
     if(!gg.player.isAlive){
