@@ -136,12 +136,12 @@ var Player = function(){
     //this function will check for collision with a powerup by looping through the class of powerups and checks to see if you have gained any powerups, and if so, gives you them.
 
     this.givePlayerBoot = function(){
-        document.getElementById("slime").src = "images/playerwithboot.gif";
+        document.getElementById("slime").src = "images/playerdoublejumpboot.agif";
         document.getElementById("boot").hidden = true;
-        document.getElementById("slime").style.width = "70px";
-        document.getElementById("slime").style.height = "70px";
-        this.width = 70;
-        this.height = 70;
+        document.getElementById("slime").style.width = "75px";
+        document.getElementById("slime").style.height = "75px";
+        this.width = 75;
+        this.height = 75;
         this.bootMan=true;
     }
     this.powerUpCollision = function(){
