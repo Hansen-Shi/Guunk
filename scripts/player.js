@@ -132,6 +132,47 @@ var Player = function(){
         return(-1);
     };
 
+    //this function will check for collision with a powerup by looping through the class of powerups and checks to see if you have gained any powerups, and if so, gives you them.
+
+    this.givePlayerBoot = function(){
+        document.getElementById("slime").src = "images/playerwithboot.gif";
+        document.getElementById("boot").hidden = true;
+        document.getElementById("slime").style.width = "80px";
+        document.getElementById("slime").style.height = "80px";
+        this.width = 80;
+        this.height = 80;
+    }
+    this.powerUpCollision = function(){
+        var powerUpArray = $('.powerup');
+
+        for(let i = 0; i < powerUpArray.length;i++){
+            var offsets = powerUpArray[i].getBoundingClientRect();
+            const blockX = offsets.left;
+            const blockY = offsets.top;
+            const blockWidth = powerUpArray[i].offsetWidth;
+            const blockHeight = powerUpArray[i].offsetHeight;
+
+            if ((this.locY + this.height > blockY + 1) //bottom of player is below top of block
+                && (this.locY < blockY + blockHeight)) { //top of player is above bottom of block
+                if ((this.locX + this.width) > (blockX) && (this.locX) < (blockX + blockWidth)) {
+                    console.log("almost gotcha?");
+                    console.log(powerUpArray[i].id);
+                    if(powerUpArray[i].id === "boot"){
+                        this.givePlayerBoot();
+
+                    }
+
+                }
+            }
+
+
+
+        }
+
+
+
+    }
+
 
     this.die = function(){
         this.isAlive =false;
@@ -248,7 +289,8 @@ var Player = function(){
             
         }
 
-        this.acidPitCollisions();
+         this.acidPitCollisions();
+         this.powerUpCollision();
 
 
         const XCoordOfBlockThatWeAreCollidingWith = this.collidingFromSide();

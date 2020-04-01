@@ -38,3 +38,10 @@ body{
     background-size: cover;
     background-position: center center;
 }
+
+.boot{
+    position:absolute;
+    background-image: url('../images/dasboot.png');
+    background-size:cover;
+    background-position: center center;
+}
