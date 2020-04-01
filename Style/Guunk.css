@@ -18,6 +18,17 @@ body{
     z-index: 1;
 }
 
+
+#titleSlime1{
+    position:absolute;
+    background:url('../images/slime.gif');
+    background-size:100px;
+    height:100px;
+    width:100px;
+    top:500px;
+    left:500px;
+}
+
 .title{
     font-family: Marker Felt, fantasy;
     font-size: 100px;
