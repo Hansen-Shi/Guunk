@@ -7,7 +7,7 @@ body{
     text-align: center;
     background: url('../images/startscreen.agif');
     background-size:cover;
-    background-size: 1920px;
+    background-repeat: no-repeat;
     width: 1920px;
     height: 1080px;
     top: 0;
