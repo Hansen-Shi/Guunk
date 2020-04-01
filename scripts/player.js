@@ -29,7 +29,7 @@ var Player = function(){
     this.leftAllow = true;
     this.rightAllow = true;
     this.jumpAllow = true;
-    this.doubleJumpAllow = true;
+    this.doubleJumpAllow = false;
     this.spitAllow = true;
     this.hoverAllow = true;
     this.bootMan = false;
@@ -162,6 +162,9 @@ var Player = function(){
                     if(powerUpArray[i].id === "boot"){
                         this.givePlayerBoot();
                     }
+                    if(powerUpArray[i].id === "jump"){
+                        this.collectDoubleJump();
+                    }
 
                 }
             }
@@ -267,6 +270,7 @@ var Player = function(){
 
     this.collectDoubleJump = function(){
         this.doubleJumpAllow = true;
+        document.getElementById("jump").hidden = true;
     };
 
     this.collectLeft = function(){

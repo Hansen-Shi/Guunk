@@ -45,3 +45,10 @@ body{
     background-size:cover;
     background-position: center center;
 }
+
+#jump{
+    position:absolute;
+    background-image: url('../images/jump.png');
+    background-size:cover;
+    background-position: center center;
+}
