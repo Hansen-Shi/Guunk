@@ -208,13 +208,13 @@ var Player = function(){
                 if ((this.locX + this.width) > (blockX) && (this.locX) < (blockX + blockWidth)) {
                     console.log("almost gotcha?");
                     console.log(powerUpArray[i].id);
-                    if(powerUpArray[i].id === "boot"){
+                    if(powerUpArray[i].id === "boot" && !this.bootMan){
                         this.givePlayerBoot();
                     }
-                    if(powerUpArray[i].id === "jump"){
+                    if(powerUpArray[i].id === "jump" && !this.doubleJumpAllow){
                         this.collectDoubleJump();
                     }
-                    if(powerUpArray[i].id === "glider-ground"){
+                    if(powerUpArray[i].id === "glider-ground" && !this.hoverAllow){
                         this.collectGlider();
                     }
                     if(powerUpArray[i].id === "win-game-star"){
