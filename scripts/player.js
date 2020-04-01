@@ -271,6 +271,7 @@ var Player = function(){
     this.collectDoubleJump = function(){
         this.doubleJumpAllow = true;
         document.getElementById("jump").hidden = true;
+        document.getElementById("slime").src = "images/playerafterdoublejump.gif"
     };
 
     this.collectLeft = function(){
