@@ -29,9 +29,37 @@ body{
     font-weight: bold;
     text-align: center;
     color: #87CEFA;
-    
 }
 
+#shift-key{
+    position: absolute;
+    background-image: url("../images/keys/key_shift_off.png");
+    background-size:cover;
+    background-repeat:no-repeat;
+    visibility: hidden;
+    z-index: 1;
+}
+#w-key{
+    position: absolute;
+    background-image: url("../images/keys/key_w_off.png");
+    background-size:cover;
+    background-repeat:no-repeat;
+    z-index: 1;
+}
+#a-key{
+    position: absolute;
+    background-image: url("../images/keys/key_a_off.png");
+    background-size:cover;
+    background-repeat:no-repeat;
+    z-index: 1;
+}
+#d-key{
+    position: absolute;
+    background-image: url("../images/keys/key_d_off.png");
+    background-size:cover;
+    background-repeat:no-repeat;
+    z-index: 1;
+}
 
 #StartBtn{
     position: relative;

@@ -5,6 +5,7 @@ function Guunk() {
     const leftRightCamSpeed = 5;
     const shiftAccel = .8;
 
+
     this.xOffset = 0;
     this.yOffset = 0;
 
@@ -163,6 +164,7 @@ function Guunk() {
     document.addEventListener("keydown", function (event) {
         if (event.keyCode == action.RIGHT || event.keyCode == 68) {
             gg.keys.right = true;
+            $('#d-key').css("background-image", "url('images/keys/key_d_on.png')")
             if(gg.keys.left) {
                 // console.log("we are holding left, and we just pressed right, so we will hold left");
                 gg.keys.leftheld = true;
@@ -171,6 +173,7 @@ function Guunk() {
 
         }
         if(event.keyCode == action.LEFT|| event.keyCode == 65){
+            $('#a-key').css("background-image", "url('images/keys/key_a_on.png')")
             gg.keys.left = true;
             if(gg.keys.right) {
                 gg.keys.rightheld = true;
@@ -178,28 +181,32 @@ function Guunk() {
             }
         }
         if(event.keyCode == action.SPACE){
-            var offsets = allObjectsToShift[i].getBoundingClientRect();
+            /*var offsets = allObjectsToShift[i].getBoundingClientRect();
             //const yposn = offsets.top;
             allObjectsToShift[i].style.top = offsets.top + shiftAmt + "px";
             document.getElementById("background-jank")
-            gg.keys.space = true;
+            gg.keys.space = true;*/
         }
         if(event.keyCode == action.UP|| event.keyCode == 87){
             gg.keys.up = true;
+            $('#w-key').css("background-image", "url('images/keys/key_w_on.png')")
         }
         if(event.keyCode == action.SHIFT){
             gg.keys.shift = true;
+            $('#shift-key').css("background-image", "url('images/keys/key_shift_on.png')")
         }
     });
 
     document.addEventListener("keyup", function (event) {
         if (event.keyCode == action.RIGHT || event.keyCode == 68) {
+            $('#d-key').css("background-image", "url('images/keys/key_d_off.png')")
             gg.keys.right = false;
             gg.keys.rightheld = false;
             if(gg.keys.leftheld)
                 gg.keys.left=true;
         }
         if(event.keyCode == action.LEFT || event.keyCode == 65){
+            $('#a-key').css("background-image", "url('images/keys/key_a_off.png')")
             gg.keys.left = false;
             if(gg.keys.rightheld) {
                 gg.keys.right = true;
@@ -211,9 +218,11 @@ function Guunk() {
         }
         if(event.keyCode == action.UP  || event.keyCode == 87){
             gg.keys.up = false;
+            $('#w-key').css("background-image", "url('images/keys/key_w_off.png')")
         }
         if(event.keyCode == action.SHIFT){
             gg.keys.shift = false;
+            $('#shift-key').css("background-image", "url('images/keys/key_shift_off.png')")
             document.getElementById("glider-equip").style.visibility = "hidden";
         }
     });
@@ -228,6 +237,19 @@ function mainLoop(){
     document.getElementById("titleScreen").style.width = window.innerWidth + "px";
     document.getElementById("gameOverScreen").style.height = window.innerHeight + "px";
     document.getElementById("gameOverScreen").style.width = window.innerWidth + "px";
+    /*
+    <div style="height:60px;width:60px;top:1900px;left:150px"id = "w-key"></div>
+    <div style="height:60px;width:60px;top:1965px;left:120px"id = "a-key"></div>
+    <div style="height:60px;width:60px;top:1965px;left:185px"id = "d-key"></div>
+    <div style="height:80px;width:100px;top:1955px;left:15px"id = "shift-key"></div>
+     */
+    let wtop = (1700*1.0/2160) * window.innerHeight;
+    document.getElementById("w-key").style.top = wtop + "px";
+    document.getElementById("a-key").style.top = wtop + 65 + "px";
+    document.getElementById("d-key").style.top = wtop + 65 + "px";
+    document.getElementById("shift-key").style.top = wtop + 55 + "px";
+
+
     $('#StartBtn').on('click',function(){
             $('#titleScreen').css('visibility', 'hidden');
     });

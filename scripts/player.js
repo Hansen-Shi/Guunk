@@ -39,6 +39,7 @@ var Player = function(){
     };
     this.collectGlider = function(){
         this.hoverAllow=true;
+        document.getElementById("shift-key").style.visibility = "visible";
         document.getElementById("glider-ground").style.visibility = "hidden";
     };
     this.collectWinStar = function(){
