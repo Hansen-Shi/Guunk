@@ -42,6 +42,26 @@ body{
 }
 
 
+#gameOverScreen{
+    position: absolute;
+    text-align: center;
+    background-image: url('https://media.giphy.com/media/26FPImXfDlv4AFbBC/giphy.gif');
+    width: 1920px;
+    height: 1080px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.gameover{
+    font-family: Marker Felt, fantasy;
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+
 
 
 

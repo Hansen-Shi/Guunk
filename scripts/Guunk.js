@@ -226,7 +226,6 @@ function mainLoop(){
             $('#titleScreen').hide();
     });
 
-
     if(!gg.player.isAlive){
         console.log("this happens");
         gg.unshiftEverything();
