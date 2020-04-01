@@ -32,6 +32,7 @@ var Player = function(){
     this.doubleJumpAllow = true;
     this.spitAllow = true;
     this.hoverAllow = true;
+    this.bootMan = false;
 
     this.initialize = function(){
 
@@ -137,10 +138,11 @@ var Player = function(){
     this.givePlayerBoot = function(){
         document.getElementById("slime").src = "images/playerwithboot.gif";
         document.getElementById("boot").hidden = true;
-        document.getElementById("slime").style.width = "80px";
-        document.getElementById("slime").style.height = "80px";
+        document.getElementById("slime").style.width = "70px";
+        document.getElementById("slime").style.height = "70px";
         this.width = 80;
         this.height = 80;
+        this.bootMan=true;
     }
     this.powerUpCollision = function(){
         var powerUpArray = $('.powerup');
@@ -159,7 +161,6 @@ var Player = function(){
                     console.log(powerUpArray[i].id);
                     if(powerUpArray[i].id === "boot"){
                         this.givePlayerBoot();
-
                     }
 
                 }
@@ -289,8 +290,11 @@ var Player = function(){
             
         }
 
-         this.acidPitCollisions();
+         if(!this.bootMan)
+            this.acidPitCollisions();
+
          this.powerUpCollision();
+
 
 
         const XCoordOfBlockThatWeAreCollidingWith = this.collidingFromSide();
