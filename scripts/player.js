@@ -212,6 +212,26 @@ var Player = function(){
         }
     };
 
+    this.collectJump = function(){
+        this.jumpAllow = true;
+    };
+
+    this.collectDoubleJump = function(){
+        this.doubleJumpAllow = true;
+    };
+
+    this.collectLeft = function(){
+        this.leftAllow = true;
+    };
+
+    this.collectRight = function(){
+        this.rightAllow = true;
+    };
+
+    this.collectHover = function(){
+        this.hoverAllow = true;
+    };
+
     this.update = function(keys){
         if (keys.left && this.leftAllow){
             $('#slime').css('-transform', 'scaleX(1)');
