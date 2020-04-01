@@ -45,11 +45,11 @@ function Guunk() {
     };
 
     this.setTitleScreenDimensions = function(){
-        document.getElementById("titleScreen").style.height = window.innerHeight;
-        document.getElementById("titleScreen").style.width = window.innerWidth;
-        document.getElementById("gameOverScreen").style.height = window.innerHeight;
-        document.getElementById("gameOverScreen").style.width = window.innerWidth;
-    }
+        document.getElementById("titleScreen").style.height = window.innerHeight + "px";
+        document.getElementById("titleScreen").style.width = window.innerWidth + "px";
+        document.getElementById("gameOverScreen").style.height = window.innerHeight + "px";
+        document.getElementById("gameOverScreen").style.width = window.innerWidth + "px";
+    };
     this.unshiftEverything = function(){
 
         var allObjectsToShit = $('.object');
@@ -235,11 +235,8 @@ function mainLoop(){
     });
 
 
-    document.getElementById("titleScreen").style.height = window.innerHeight + "px";
+    this.setTitleScreenDimensions();
 
-    document.getElementById("titleScreen").style.width = window.innerWidth + "px";
-    document.getElementById("gameOverScreen").style.height = window.innerHeight + "px";
-    document.getElementById("gameOverScreen").style.width = window.innerWidth + "px";
 
     if(!gg.player.isAlive){
         console.log("this happens");
