@@ -267,7 +267,6 @@ var Player = function(){
 
             if(this.velocY > 0){
                 if( (this.locX + this.width) > blockX  &&  (this.locX) < (blockX + blockWidth)){
-                    console.log("we In here");
                     if((this.locY + this.velocY) < (blockY+blockHeight) && (this.locY + this.height) > blockY){
                         if(this.bootMan){
                             this.velocY = 0;

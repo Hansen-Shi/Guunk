@@ -237,9 +237,13 @@ function mainLoop(){
 
 
     if(!gg.player.isAlive){
-        console.log("this happens");
         gg.unshiftEverything();
         gg.player.isAlive = true;
+    }
+
+    if(gg.player.splat){
+        gg.unshiftEverything();
+        gg.player.splat = false;
     }
 
     if(gg.player.hasWonGame){
